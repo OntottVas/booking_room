@@ -1,17 +1,13 @@
 package hu.progmatic.booking_room.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Data
@@ -20,14 +16,18 @@ import java.util.List;
 public class Booking {
     @Id
     private Long id;
-    @ManyToMany
+    @ManyToOne
     @JoinColumn(name = "guest_id")
-    private List<Guest> guests = new ArrayList<>();
-    @ManyToMany
+    @JsonManagedReference
+    private Guest guest;
+    @ManyToOne
     @JoinColumn(name = "room_id")
-    private List<Room> rooms = new ArrayList<>();
-    @DateTimeFormat(pattern = "yyyy/MM/dd")
+    @JsonManagedReference
+    private Room room;
+    //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date start;
-    @DateTimeFormat(pattern = "yyyy/MM/dd")
+    //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date end;
 }

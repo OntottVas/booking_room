@@ -1,13 +1,17 @@
 package hu.progmatic.booking_room.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Data
@@ -20,6 +24,10 @@ public class Guest {
     private String last_name;
     private String first_name;
     private String birthplace;
-    @DateTimeFormat(pattern = "yyyy/MM/dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date birth_time;
+
+    @OneToMany(mappedBy = "guest")
+    @JsonBackReference
+    private List<Booking> bookings = new ArrayList<>();
 }

@@ -5,6 +5,7 @@ import hu.progmatic.booking_room.repository.GuestRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,5 +36,9 @@ public class GuestService {
         if (guest.isPresent()) {
             guest.get().setFirst_name(newFirstname);
         }
+    }
+
+    public List<Guest> getAllGuests() {
+        return guestRepository.findAll();
     }
 }

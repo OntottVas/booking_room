@@ -6,6 +6,8 @@ import hu.progmatic.booking_room.repository.RoomRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @AllArgsConstructor
 public class BookingService {
@@ -14,6 +16,10 @@ public class BookingService {
 
     public Booking newBooking(Booking booking) {
         return bookingRepository.save(booking);
+    }
+
+    public List<Booking> getAllBookings() {
+        return bookingRepository.findAll();
     }
 
 
