@@ -15,6 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class Booking {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "guest_id")
@@ -24,10 +25,8 @@ public class Booking {
     @JoinColumn(name = "room_id")
     @JsonManagedReference
     private Room room;
-    //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date start;
-    //@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date end;
 }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking App</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Title</th>
+        <th>Last name</th>
+        <th>First name</th>
+        <th>Birthplace</th>
+        <th>Time of birth</th>
+        <th>Identification number</th>
+        <th>Email</th>
+    </tr>
+    </thead>
+    <tr th:each="guest : ${guests}">
+        <td th:text="${guest.getId()}"></td>
+        <td th:text="${guest.getTitle()}"></td>
+        <td th:text="${guest.getLast_name()}"></td>
+        <td th:text="${guest.getFirst_name()}"></td>
+        <td th:text="${guest.getBirthplace()}"></td>
+        <td th:text="${#dates.format(guest.getBirth_time(), 'yyyy-MM-dd')}"></td>
+        <td th:text="${guest.getPerson_id()}"></td>
+        <td th:text="${guest.getEmail()}"></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking App</title>
+</head>
+<body>
+<form th:action="@{/addGuest}" method="post">
+    <label> Title:
+        <input th:field="*{newGuest.title}" placeholder="" type="text" id="title" title="title">
+    </label>
+    <label> Last name:
+        <input  th:field="*{newGuest.last_name}" placeholder="" type="text" id="last_name" title="last_name">
+    </label>
+    <label> First name:
+        <input  th:field="*{newGuest.first_name}" placeholder="" type="text" id="first_name" title="first_name">
+    </label>
+    <label> Birthplace:
+        <input  th:field="*{newGuest.birthplace}" placeholder="" type="text" id="birthplace" title="birthplace">
+    </label>
+    <label> Time of birth:
+        <input  th:field="*{newGuest.birth_time}" placeholder="" type="date" id="birth_time" title="birth_time"
+        value="2023-01-01" min="1901-01-01" max="2023-10-05">
+    </label>
+    <label> Identification Number:
+        <input  th:field="*{newGuest.person_id}" placeholder="" type="text" id="person_id" title="person_id">
+    </label>
+    <label> Email address:
+        <input  th:field="*{newGuest.email}" placeholder="" type="text" id="email" title="email">
+    </label>
+
+    <button type="submit">Submit</button>
+
+</form>
+</body>
+</html>

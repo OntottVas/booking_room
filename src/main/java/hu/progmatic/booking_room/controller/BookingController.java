@@ -5,12 +5,15 @@ import hu.progmatic.booking_room.model.Guest;
 import hu.progmatic.booking_room.service.BookingService;
 import hu.progmatic.booking_room.service.GuestService;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
-@RestController
+@Controller
 @AllArgsConstructor
 public class BookingController {
     private BookingService bookingService;
@@ -22,7 +25,21 @@ public class BookingController {
     }
 
     @GetMapping("/guests")
-    public List<Guest> getAllGuests() {
-        return guestService.getAllGuests();
+    public String getAllGuests(Model model) {
+        model.addAttribute("guests", guestService.getAllGuests());
+        return "guests";
     }
+
+    @GetMapping("/addGuest")
+    public String addNewGuest(Model model) {
+        model.addAttribute("newGuest", new Guest());
+        return "addGuest";
+    }
+
+    @PostMapping("/addGuest")
+    public String addNewGuest(@ModelAttribute("newGuest") Guest newGuest) {
+        guestService.addNewGuest(newGuest);
+        return "redirect:/guests";
+    }
+
 }
