@@ -23,30 +23,6 @@ public class BookingController {
         return "bookings/bookings";
     }
 
-    @GetMapping("/guests")
-    public String getAllGuests(Model model) {
-        model.addAttribute("guests", guestService.getAllGuests());
-        return "guest/guests";
-    }
-
-    @GetMapping("/rooms")
-    public String getAllRooms(Model model) {
-        model.addAttribute("rooms", roomService.getAllRooms());
-        return "rooms/rooms";
-    }
-
-    @GetMapping("/addGuest")
-    public String addNewGuest(Model model) {
-        model.addAttribute("newGuest", new Guest());
-        return "guest/addGuest";
-    }
-
-    @PostMapping("/addGuest")
-    public String addNewGuest(@ModelAttribute("newGuest") Guest newGuest) {
-        guestService.addNewGuest(newGuest);
-        return "redirect:/guests";
-    }
-
     @GetMapping("/modifyGuest")
     public String modifyGuest() {
         return "bookings/modifyGuest";
