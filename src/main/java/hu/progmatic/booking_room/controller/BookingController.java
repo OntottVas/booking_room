@@ -74,6 +74,17 @@ public class BookingController {
         return "redirect:/bookings";
     }
 
+    @GetMapping("/modifyEnd")
+    public String modifyEnd() {
+        return "bookings/modifyEnd";
+    }
+
+    @PostMapping("/modifyEnd")
+    public String modifyEnd(@RequestParam("id") Long id, @RequestParam("end") Date newEnd) {
+        bookingService.modifyEndDate(id, newEnd);
+        return "redirect:/bookings";
+    }
+
     @GetMapping("/deleteBooking")
     public String deleteBooking() {
         return "bookings/deleteBooking";

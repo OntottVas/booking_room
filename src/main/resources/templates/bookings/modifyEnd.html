@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking App</title>
+</head>
+<body>
+<form th:action="@{/modifyEnd}" method="post">
+  <label>Booking Id:
+    <input type="number" name="id">
+  </label>
+  <label> New start time:
+    <input type="date" name="end"
+           value="2023-01-01" min="2023-01-01" max="2099-12-31">
+  </label>
+
+  <button type="submit">Modify</button>
+</form>
+</body>
+</html>
