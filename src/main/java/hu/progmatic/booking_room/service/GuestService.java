@@ -17,15 +17,21 @@ public class GuestService {
     }
 
     public void modifyTitle(Long id, String newTitle) {
-        getGuestById(id).setTitle(newTitle);
+        Guest guest = getGuestById(id);
+        guest.setTitle(newTitle);
+        guestRepository.save(guest);
     }
 
     public void modifyLastname(Long id, String newLastname) {
-        getGuestById(id).setLast_name(newLastname);
+        Guest guest = getGuestById(id);
+        guest.setLast_name(newLastname);
+        guestRepository.save(guest);
     }
 
     public void modifyFirstname(Long id, String newFirstname) {
-        getGuestById(id).setFirst_name(newFirstname);
+        Guest guest = getGuestById(id);
+        guest.setFirst_name(newFirstname);
+        guestRepository.save(guest);
     }
 
     public List<Guest> getAllGuests() {

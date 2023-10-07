@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking App</title>
+</head>
+<body>
+<form th:action="@{/modifyLastName}" method="post">
+    <label>Guest Id:
+        <input type="number" name="id">
+    </label>
+    <label>New Last name:
+        <input type="text" name="lastName">
+    </label>
+
+    <button type="submit">Modify</button>
+</form>
+</body>
+</html>
