@@ -1,11 +1,13 @@
 package hu.progmatic.booking_room.controller;
 
+import hu.progmatic.booking_room.model.Booking;
 import hu.progmatic.booking_room.model.Guest;
 import hu.progmatic.booking_room.model.Room;
 import hu.progmatic.booking_room.service.BookingService;
 import hu.progmatic.booking_room.service.GuestService;
 import hu.progmatic.booking_room.service.RoomService;
 import lombok.AllArgsConstructor;
+import org.hibernate.annotations.IdGeneratorType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +23,18 @@ public class BookingController {
     public String getAllBookings(Model model) {
         model.addAttribute("bookings", bookingService.getAllBookings());
         return "bookings/bookings";
+    }
+
+    @GetMapping("/addBooking")
+    public String createNewBooking(Model model) {
+        model.addAttribute("newBooking", new Booking());
+        return "bookings/newBooking";
+    }
+
+    @PostMapping("/addBooking")
+    public String createNewBooking(@ModelAttribute ("newBooking") Booking newBooking) {
+        bookingService.createNewBooking(newBooking);
+        return "redirect:/bookings";
     }
 
     @GetMapping("/modifyGuest")
@@ -44,6 +58,17 @@ public class BookingController {
     public String modifyRoom(@RequestParam("id") Long id, @RequestParam("room_id") Long room_id) {
         Room otherRoom = roomService.getRoomById(room_id);
         bookingService.modifyRoom(id, otherRoom);
+        return "redirect:/bookings";
+    }
+
+    @GetMapping("/deleteBooking")
+    public String deleteBooking() {
+        return "bookings/deleteBooking";
+    }
+
+    @PostMapping("/deleteBooking")
+    public String deleteBooking(@RequestParam("id") Long id) {
+        bookingService.deleteBookingById(id);
         return "redirect:/bookings";
     }
 }

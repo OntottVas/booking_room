@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking App</title>
+</head>
+<body>
+<form th:action="@{/addBooking}" method="post">
+    <label> Guest Id:
+        <input th:field="*{newBooking.guest.id}" placeholder="" type="text" id="guest_id" title="guest_id">
+    </label>
+    <label> Room Id:
+        <input th:field="*{newBooking.room.id}" placeholder="" type="text" id="room_id" title="room_id">
+    </label>
+    <label> Beginning of stay:
+        <input th:field="*{newBooking.start}" placeholder="" type="date" id="start" title="start"
+               value="2023-10-07" min="2023-10-07" max="2099-12-31">
+    </label>
+    <label> End of stay:
+        <input th:field="*{newBooking.end}" placeholder="" type="date" id="end" title="end"
+               value="2023-10-07" min="2023-10-07" max="2099-12-31">
+    </label>
+
+    <button type="submit">Submit</button>
+
+</form>
+</body>
+</html>
