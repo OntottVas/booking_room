@@ -23,13 +23,13 @@ public class BookingController {
     @GetMapping("/bookings")
     public String getAllBookings(Model model) {
         model.addAttribute("bookings", bookingService.getAllBookings());
-        return "bookings/bookings";
+        return "booking/bookings";
     }
 
     @GetMapping("/addBooking")
     public String createNewBooking(Model model) {
         model.addAttribute("newBooking", new Booking());
-        return "bookings/newBooking";
+        return "booking/newBooking";
     }
 
     @PostMapping("/addBooking")
@@ -40,11 +40,12 @@ public class BookingController {
 
     @GetMapping("/modifyGuest")
     public String modifyGuest() {
-        return "bookings/modifyGuest";
+        return "booking/modifyGuest";
     }
 
     @PostMapping("/modifyGuest")
-    public String modifyGuest(@RequestParam("id") Long id, @RequestParam("guest_id") Long guest_id) {
+    public String modifyGuest(@RequestParam("id") Long id,
+                              @RequestParam("guest_id") Long guest_id) {
         Guest otherGuest = guestService.getGuestById(guest_id);
         bookingService.modifyGuest(id, otherGuest);
         return "redirect:/bookings";
@@ -52,11 +53,12 @@ public class BookingController {
 
     @GetMapping("/modifyRoom")
     public String modifyRoom() {
-        return "bookings/modifyRoom";
+        return "booking/modifyRoom";
     }
 
     @PostMapping("/modifyRoom")
-    public String modifyRoom(@RequestParam("id") Long id, @RequestParam("room_id") Long room_id) {
+    public String modifyRoom(@RequestParam("id") Long id,
+                             @RequestParam("room_id") Long room_id) {
         Room otherRoom = roomService.getRoomById(room_id);
         bookingService.modifyRoom(id, otherRoom);
         return "redirect:/bookings";
@@ -64,29 +66,31 @@ public class BookingController {
 
     @GetMapping("/modifyStart")
     public String modifyStart() {
-        return "bookings/modifyStart";
+        return "booking/modifyStart";
     }
 
     @PostMapping("/modifyStart")
-    public String modifyStart(@RequestParam("id") Long id, @RequestParam("start") Date newStart) {
+    public String modifyStart(@RequestParam("id") Long id,
+                              @RequestParam("start") Date newStart) {
         bookingService.modifyStartDate(id, newStart);
         return "redirect:/bookings";
     }
 
     @GetMapping("/modifyEnd")
     public String modifyEnd() {
-        return "bookings/modifyEnd";
+        return "booking/modifyEnd";
     }
 
     @PostMapping("/modifyEnd")
-    public String modifyEnd(@RequestParam("id") Long id, @RequestParam("end") Date newEnd) {
+    public String modifyEnd(@RequestParam("id") Long id,
+                            @RequestParam("end") Date newEnd) {
         bookingService.modifyEndDate(id, newEnd);
         return "redirect:/bookings";
     }
 
     @GetMapping("/deleteBooking")
     public String deleteBooking() {
-        return "bookings/deleteBooking";
+        return "booking/deleteBooking";
     }
 
     @PostMapping("/deleteBooking")
