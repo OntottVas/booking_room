@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking App</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Guest</th>
+        <th>Room</th>
+        <th>Start date</th>
+        <th>End date</th>
+    </tr>
+    </thead>
+    <tr th:each="booking : ${bookings}">
+        <td th:text="${booking.getId()}"></td>
+        <td th:text="${booking.getGuest().getLast_name()}"></td>
+        <td th:text="${booking.getRoom().getNumber()}"></td>
+        <td th:text="${#dates.format(booking.getStart(), 'yyyy-MM-dd')}"></td>
+        <td th:text="${#dates.format(booking.getEnd(), 'yyyy-MM-dd')}"></td>
+    </tr>
+</table>
+</body>
+</html>
