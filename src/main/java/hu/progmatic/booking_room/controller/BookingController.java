@@ -12,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
+
 @Controller
 @AllArgsConstructor
 public class BookingController {
@@ -58,6 +60,17 @@ public class BookingController {
     public String modifyRoom(@RequestParam("id") Long id, @RequestParam("room_id") Long room_id) {
         Room otherRoom = roomService.getRoomById(room_id);
         bookingService.modifyRoom(id, otherRoom);
+        return "redirect:/bookings";
+    }
+
+    @GetMapping("/modifyStart")
+    public String modifyStart() {
+        return "bookings/modifyStart";
+    }
+
+    @PostMapping("/modifyStart")
+    public String modifyStart(@RequestParam("id") Long id, @RequestParam("start") Date newStart) {
+        bookingService.modifyStartDate(id, newStart);
         return "redirect:/bookings";
     }
 

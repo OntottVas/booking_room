@@ -48,15 +48,23 @@ public class BookingService {
     }
 
     public void modifyStartDate(Long id, Date newDate) {
-        Booking booking = getBookingById(id);
-        booking.setStart(newDate);
-        bookingRepository.save(booking);
+        if (newDate.before(getBookingById(id).getEnd())) {
+            Booking booking = getBookingById(id);
+            booking.setStart(newDate);
+            bookingRepository.save(booking);
+        } else {
+            System.out.println("Not gonna happen BRAH");
+        }
     }
 
     public void modifyEndDate(Long id, Date newDate) {
-        Booking booking = getBookingById(id);
-        booking.setEnd(newDate);
-        bookingRepository.save(booking);
+        if (newDate.after(getBookingById(id).getStart())) {
+            Booking booking = getBookingById(id);
+            booking.setEnd(newDate);
+            bookingRepository.save(booking);
+        } else {
+            System.out.println("Not gonna happen BRAH");
+        }
     }
 
     public void deleteBookingById(Long id) {
