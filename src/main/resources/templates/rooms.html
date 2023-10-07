@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Booking App</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Room number</th>
+        <th>Max capacity</th>
+        <th>Price [Ft/evening]</th>
+        <th>Has Jacuzzi</th>
+        <th>Has Sauna</th>
+    </tr>
+    </thead>
+    <tr th:each="room : ${rooms}">
+        <td th:text="${room.getId()}"></td>
+        <td th:text="${room.getNumber()}"></td>
+        <td th:text="${room.getCapacity()}"></td>
+        <td th:text="${room.getPrice()}"></td>
+        <td th:text="${room.getJacuzzi()}"></td>
+        <td th:text="${room.getSauna()}"></td>
+    </tr>
+</table>
+</body>
+</html>
