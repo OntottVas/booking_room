@@ -20,25 +20,25 @@ public class BookingController {
     @GetMapping("/bookings")
     public String getAllBookings(Model model) {
         model.addAttribute("bookings", bookingService.getAllBookings());
-        return "bookings";
+        return "bookings/bookings";
     }
 
     @GetMapping("/guests")
     public String getAllGuests(Model model) {
         model.addAttribute("guests", guestService.getAllGuests());
-        return "guests";
+        return "guest/guests";
     }
 
     @GetMapping("/rooms")
     public String getAllRooms(Model model) {
         model.addAttribute("rooms", roomService.getAllRooms());
-        return "rooms";
+        return "rooms/rooms";
     }
 
     @GetMapping("/addGuest")
     public String addNewGuest(Model model) {
         model.addAttribute("newGuest", new Guest());
-        return "addGuest";
+        return "guest/addGuest";
     }
 
     @PostMapping("/addGuest")
@@ -49,7 +49,7 @@ public class BookingController {
 
     @GetMapping("/modifyGuest")
     public String modifyGuest() {
-        return "modifyGuest";
+        return "bookings/modifyGuest";
     }
 
     @PostMapping("/modifyGuest")
@@ -61,7 +61,7 @@ public class BookingController {
 
     @GetMapping("/modifyRoom")
     public String modifyRoom() {
-        return "modifyRoom";
+        return "bookings/modifyRoom";
     }
 
     @PostMapping("/modifyRoom")
