@@ -7,7 +7,6 @@ import hu.progmatic.booking_room.service.BookingService;
 import hu.progmatic.booking_room.service.GuestService;
 import hu.progmatic.booking_room.service.RoomService;
 import lombok.AllArgsConstructor;
-import org.hibernate.annotations.IdGeneratorType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +34,7 @@ public class BookingController {
 
     @PostMapping("/addBooking")
     public String createNewBooking(@ModelAttribute ("newBooking") Booking newBooking) {
-        bookingService.createNewBooking(newBooking);
+        bookingService.newBooking(newBooking);
         return "redirect:/bookings";
     }
 

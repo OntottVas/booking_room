@@ -31,10 +31,6 @@ public class BookingService {
         return bookingRepository.findById(id).orElse(null);
     }
 
-    public Booking createNewBooking(Booking booking) {
-        return bookingRepository.save(booking);
-    }
-
     public void modifyRoom(Long id, Room newRoom) {
         Booking booking = getBookingById(id);
         booking.setRoom(newRoom);
