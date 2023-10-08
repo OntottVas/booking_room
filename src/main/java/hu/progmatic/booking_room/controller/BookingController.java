@@ -33,8 +33,10 @@ public class BookingController {
     }
 
     @PostMapping("/addBooking")
-    public String createNewBooking(@ModelAttribute ("newBooking") Booking newBooking) {
-        bookingService.newBooking(newBooking);
+    public String createNewBooking(@ModelAttribute ("newBooking") Booking newBooking) throws Exception {
+        if (bookingService.checkForOccupancy(newBooking.getRoom().getId())) {
+            bookingService.newBooking(newBooking);
+        }
         return "redirect:/bookings";
     }
 

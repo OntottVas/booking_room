@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -67,4 +69,14 @@ public class BookingService {
         bookingRepository.deleteById(id);
     }
 
+    public Boolean checkForOccupancy(Long roomId) throws Exception{
+        Optional<Room> room = roomRepository.findById(roomId);
+        Integer capacity;
+        if (room.isPresent()) {
+            capacity = room.get().getCapacity();
+        } else {
+            throw new NoSuchElementException();
+        }
+        return bookingRepository.roomOccupancy(roomId) < capacity;
+    }
 }
